@@ -4,6 +4,8 @@ import jwt from "jsonwebtoken";
 import getDataUri from "../utils/datauri.js";
 import cloudinary from "../utils/cloudinary.js";
 
+// Register Function
+
 export const register = async (req, res) => {
     try {
         const { fullname, email, phoneNumber, password, role } = req.body;
@@ -13,6 +15,8 @@ export const register = async (req, res) => {
                 success: false
             });
         };
+
+        // Upload profile photo to Cloudinary
         const file = req.file;
         const fileUri = getDataUri(file);
         const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
@@ -26,6 +30,7 @@ export const register = async (req, res) => {
         }
         const hashedPassword = await bcrypt.hash(password, 10);
 
+        // Save the new user
         await User.create({
             fullname,
             email,
@@ -33,7 +38,7 @@ export const register = async (req, res) => {
             password: hashedPassword,
             role,
             profile: {
-                profilePhoto: cloudResponse.secure_url,
+                profilePhoto: cloudResponse.secure_url, //Save Cloudinary URL
             }
         });
         return res.status(201).json({
@@ -44,6 +49,7 @@ export const register = async (req, res) => {
         console.log(error);
     }
 }
+
 export const login = async (req, res) => {
     try {
         const { email, password, role } = req.body;
@@ -106,20 +112,23 @@ export const logout = async (req, res) => {
         console.log(error);
     }
 }
+
+// Update Profile Function
 export const updateProfile = async (req, res) => {
     try {
         const { fullname, email, phoneNumber, bio, skills } = req.body;
         const file = req.file;
-        // cloudinary ayega idhar
+        
+        // Upload resume to Cloudinary
         const fileUri = getDataUri(file);
         const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
 
-        let skillsArray;
-        if (skills) {
-            skillsArray = skills.split(",");
-        }
+        // let skillsArray;
+        // if (skills) {
+        //     skillsArray = skills.split(",");
+        // }
 
-        const userId = req.id; //middleware authentication
+        const userId = req.id; // Middleware authentication
         let user = await User.findById(userId);
 
         if (!user) {
@@ -128,17 +137,22 @@ export const updateProfile = async (req, res) => {
                 success: false
             })
         }
-        //updating data
+
+        // Update user data
         if (fullname) user.fullname = fullname
         if (email) user.email = email
         if (phoneNumber) user.phoneNumber = phoneNumber
         if (bio) user.profile.bio = bio
-        if (skills) user.profile.skills = skillsArray
+        // if (skills) user.profile.skills = skillsArray
 
-        // resume comes later here...
+        // Save skills as an array
+        if (skills) user.profile.skills = skills.split(",");
+
+
+        // Update resume if a file was uploaded
         if (cloudResponse) {
             user.profile.resume = cloudResponse.secure_url // save the cloudinary url
-            user.profile.resumeOriginalName = file.originalname // Save the original file name
+            user.profile.resumeOriginalName = file.originalname // Save original file name
         }
 
         await user.save();

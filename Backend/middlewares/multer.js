@@ -1,4 +1,5 @@
 import multer from "multer";
 
-const storage = multer.memoryStorage();
+// Multer storage configuration
+const storage = multer.memoryStorage(); // Storing file in memory, as Cloudinary will handle file storage
 export const singleUpload = multer({storage}).single("file");
