@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 import { Button } from '../ui/button'
 import { Avatar, AvatarImage } from '../ui/avatar'
@@ -16,6 +16,8 @@ const Navbar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
+    const [isToggled, setIsToggled] = useState([]);
+
 
     const logoutHandler = async () => {
         try {
@@ -30,15 +32,26 @@ const Navbar = () => {
             toast.error(error.response.data.message);
         }
     }
+
+
+    const ToggleFullView = (id) => {
+        setIsToggled((prev) => {
+            if (prev.includes(id)) {
+                return prev.filter((item) => item !== id);
+            } else {
+                return [...prev, id];
+            }
+        });
+    };
     return (
         <div className='bg-gray-100 sticky z-50 top-0 left-0 right-0'>
             <div className='flex items-center justify-between mx-auto max-w-7xl h-16'>
-                
-                    <div className='flex w-9 text-[#2567BD]'>
-                        <img src={logo} alt="logo" />
-                        <h1 className='text-2xl font-bold text-[#0CAFFF]'>ob<span className='text-[#2a2a2a]'>Portal</span></h1>
-                    </div>
-                
+
+                <div className='flex w-9 text-[#2567BD]'>
+                    <img src={logo} alt="logo" />
+                    <h1 className='text-2xl font-bold text-[#0CAFFF]'>ob<span className='text-[#2a2a2a]'>Portal</span></h1>
+                </div>
+
                 <div className='flex items-center gap-12'>
                     <ul className='flex font-medium items-center gap-5'>
                         {
@@ -68,20 +81,32 @@ const Navbar = () => {
                             <Popover>
                                 <PopoverTrigger asChild>
                                     <Avatar className={location.pathname === '/profile' ? 'hidden' : ''}>
-                                        <AvatarImage src={user?.profile?.profilePhoto} alt="@shadcn" className="cursor-pointer"/>
+                                        <AvatarImage src={user?.profile?.profilePhoto} alt="@shadcn" className="cursor-pointer" />
                                     </Avatar>
                                 </PopoverTrigger>
                                 <PopoverContent className="w-60">
                                     <div>
-                                        {/* <div className='flex gap-2 space-y-2'>
-                                            <Avatar className="cursor-pointer">
+                                        <div className='flex gap-2 space-y-2'>
+                                            {/* <Avatar className="cursor-pointer">
                                                 <AvatarImage src={user?.profile?.profilePhoto} alt="@shadcn" />
-                                            </Avatar>
+                                            </Avatar> */}
                                             <div>
                                                 <h4 className='font-medium'>{user?.fullname}</h4>
-                                                <p className='text-sm text-muted-foreground'>{user?.profile?.bio}</p>
+                                                {/* <p className='text-sm text-muted-foreground'>{user?.profile?.bio}</p> */}
+                                                <div>
+                                                    <p className={`${!isToggled.includes(user?.profile?.bio) && 'line-clamp-2 text-sm text-muted-foreground'}`}>
+                                                        {user?.profile?.bio}
+                                                    </p>
+                                                    {user?.profile?.bio.length > 200 && (
+                                                        <span className={'font-bold underline cursor-pointer text-blue-900'}
+                                                            onClick={() => ToggleFullView(user?.profile?.bio)}
+                                                        >
+                                                            {/* {isToggled.includes(user?.profile?.bio) ? 'Read less' : 'Read more'} */}
+                                                        </span>
+                                                    )}
+                                                </div>
                                             </div>
-                                        </div> */}
+                                        </div>
                                         <div className='flex flex-col my-2 text-gray-600'>
                                             {
                                                 user && user.role === 'student' && (
