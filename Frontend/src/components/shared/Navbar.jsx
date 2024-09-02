@@ -97,7 +97,7 @@ const Navbar = () => {
                                                     <p className={`${!isToggled.includes(user?.profile?.bio) && 'line-clamp-2 text-sm text-muted-foreground'}`}>
                                                         {user?.profile?.bio}
                                                     </p>
-                                                    {user?.profile?.bio.length > 200 && (
+                                                    {user?.profile?.bio > 200 && (
                                                         <span className={'font-bold underline cursor-pointer text-blue-900'}
                                                             onClick={() => ToggleFullView(user?.profile?.bio)}
                                                         >
