@@ -93,7 +93,7 @@ const Signup = () => {
                         <Label>Password</Label>
                         <Input type="password" value={input.password} name="password" onChange={changeEventHandler} placeholder="password" />
                     </div>
-                    <div className='flex items-center justify-between'>
+                    <div className='lg:flex items-center justify-between'>
                         <RadioGroup className="flex items-center gap-4 my-5">
                             <div className="flex items-center space-x-2">
                                 <Input type="radio" name="role" value="student" checked={input.role === 'student'}
@@ -106,7 +106,7 @@ const Signup = () => {
                                 <Label htmlFor="r2">Recruiter</Label>
                             </div>
                         </RadioGroup>
-                        <div className='flex items-center gap-2'>
+                        <div className='flex items-center gap-2 '>
                             <Label>Profile</Label>
                             <Input accept="image/*" type="file" onChange={changeFileHandler} className="cursor-pointer" />
                         </div>
