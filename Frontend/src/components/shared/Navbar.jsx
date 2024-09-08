@@ -63,9 +63,9 @@ const Navbar = () => {
                                 </>
                             ) : (
                                 <>
-                                    <li className='hidden md:flex'><Link to="/">Home</Link></li>
-                                    <li className='hidden md:flex'><Link to="/jobs">Jobs</Link></li>
-                                    <li className='hidden md:flex'><Link to="/browse">Browse</Link></li>
+                                    <li className=''><Link to="/">Home</Link></li>
+                                    <li className=''><Link to="/jobs">Jobs</Link></li>
+                                    <li className=''><Link to="/browse">Browse</Link></li>
                                 </>
                             )
                         }
@@ -152,8 +152,8 @@ const MobileNavbar = () => {
                 </MenubarTrigger>
                 <MenubarContent>
                     <div className='items-center gap-1 h-30 w-19 mr-px flex flex-col space-y-4 p-4 cursor-pointer font-medium'>
-                        <Link to="/jobs">Jobs</Link>
-                        <Link to="/browse">Browse</Link>
+                        {/* <Link to="/jobs">Jobs</Link>
+                        <Link to="/browse">Browse</Link> */}
                         <Link to="/login">Login</Link>
                         <Link to="/signup">Signup</Link>
                     </div>
