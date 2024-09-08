@@ -3,13 +3,13 @@ import logo from "../assets/logo.png"
 
 const Footer = () => {
     return (
-        <footer className="border-t border-t-gray-200 py-8">
+        <footer className="border-t border-t-gray-200">
 
-            <div className="grid grid-cols-1 md:grid-cols-4 py-12 container">
+            <div className="grid lg:grid-cols-2 py-12 container">
                 <div className='ml-20'>
-                    <div className='flex w-9 h-9 text-[#2567BD]'>
+                    <div className='flex w-9 h-8 text-[#2567BD]'>
                         <img src={logo} alt="logo" />
-                        <h1 className='text-2xl font-bold text-[#0CAFFF]'>ob<span className='text-[#2a2a2a]'>Portal</span></h1>
+                        <h1 className='text-xl font-bold text-[#0CAFFF]'>ob<span className='text-[#2a2a2a]'>Portal</span></h1>
                     </div>
                     <div className='font-bold mt-4 mb-3 space-y-2'>
                         <h1>Connect with us</h1>
@@ -38,29 +38,31 @@ const Footer = () => {
                         </a>
                     </div>
                 </div>
-                <div>
-                    <ul className="mt-4 space-y-2">
-                        <li><a href="#" className="hover:text-[#0CAFFF]">About us</a></li>
-                        <li><a href="#" className="hover:text-[#0CAFFF]">Careers</a></li>
-                        <li><a href="#" className="hover:text-[#0CAFFF]">Contact</a></li>
-                        <li><a href="#" className="hover:text-[#0CAFFF]">Press</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <ul className="mt-4 space-y-2">
-                        <li><a href="#" className="hover:text-[#0CAFFF]">Help center</a></li>
-                        <li><a href="#" className="hover:text-[#0CAFFF]">Report issue</a></li>
-                        <li><a href="#" className="hover:text-[#0CAFFF]">Credits</a></li>
-                        <li><a href="#" className="hover:text-[#0CAFFF]">Sitemap</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <ul className="mt-4 space-y-2">
-                        <li><a href="#" className="hover:text-[#0CAFFF]">Privacy policy</a></li>
-                        <li><a href="#" className="hover:text-[#0CAFFF]">Terms & conditions</a></li>
-                        <li><a href="#" className="hover:text-[#0CAFFF]">Fraud alert</a></li>
-                        <li><a href="#" className="hover:text-[#0CAFFF]">Trust & safety</a></li>
-                    </ul>
+                <div className='grid grid-cols-3'>
+                    <div>
+                        <ul className="mt-4 space-y-2">
+                            <li><a href="#" className="hover:text-[#0CAFFF]">About us</a></li>
+                            <li><a href="#" className="hover:text-[#0CAFFF]">Careers</a></li>
+                            <li><a href="#" className="hover:text-[#0CAFFF]">Contact</a></li>
+                            <li><a href="#" className="hover:text-[#0CAFFF]">Press</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul className="mt-4 space-y-2">
+                            <li><a href="#" className="hover:text-[#0CAFFF]">Help center</a></li>
+                            <li><a href="#" className="hover:text-[#0CAFFF]">Report issue</a></li>
+                            <li><a href="#" className="hover:text-[#0CAFFF]">Credits</a></li>
+                            <li><a href="#" className="hover:text-[#0CAFFF]">Sitemap</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul className="mt-4 space-y-2">
+                            <li><a href="#" className="hover:text-[#0CAFFF]">Privacy policy</a></li>
+                            <li><a href="#" className="hover:text-[#0CAFFF]">Terms & conditions</a></li>
+                            <li><a href="#" className="hover:text-[#0CAFFF]">Fraud alert</a></li>
+                            <li><a href="#" className="hover:text-[#0CAFFF]">Trust & safety</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div className='flex justify-center'>
