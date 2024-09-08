@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 import { Button } from '../ui/button'
 import { Avatar, AvatarImage } from '../ui/avatar'
-import { LogOut, User2 } from 'lucide-react'
+import { LogOut, Menu, User2 } from 'lucide-react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
@@ -10,6 +10,7 @@ import { USER_API_END_POINT } from '@/utils/constant'
 import { setUser } from '@/redux/authSlice'
 import { toast } from 'sonner'
 import logo from "../assets/logo.png"
+import { Menubar, MenubarContent, MenubarMenu, MenubarTrigger } from '../ui/menubar'
 
 const Navbar = () => {
     const { user } = useSelector(store => store.auth);
@@ -47,13 +48,13 @@ const Navbar = () => {
         <div className='bg-gray-100 sticky z-50 top-0 left-0 right-0'>
             <div className='flex items-center justify-between mx-auto max-w-7xl h-16'>
 
-                <div className='flex w-9 text-[#2567BD]'>
+                <div className='flex w-9 text-[#2567BD] size-7'>
                     <img src={logo} alt="logo" />
-                    <h1 className='text-2xl font-bold text-[#0CAFFF]'>ob<span className='text-[#2a2a2a]'>Portal</span></h1>
+                    <h1 className='text-base font-bold text-[#0CAFFF] font-medium'>ob<span className='text-[#2a2a2a] font-medium'>Portal</span></h1>
                 </div>
 
-                <div className='flex items-center gap-12'>
-                    <ul className='flex font-medium items-center gap-5'>
+                <div className=' flex items-center gap-6 '>
+                    <ul className=' flex font-medium items-center gap-8'>
                         {
                             user && user.role === 'recruiter' ? (
                                 <>
@@ -62,9 +63,9 @@ const Navbar = () => {
                                 </>
                             ) : (
                                 <>
-                                    <li><Link to="/">Home</Link></li>
-                                    <li><Link to="/jobs">Jobs</Link></li>
-                                    <li><Link to="/browse">Browse</Link></li>
+                                    <li className='hidden md:flex'><Link to="/">Home</Link></li>
+                                    <li className='hidden md:flex'><Link to="/jobs">Jobs</Link></li>
+                                    <li className='hidden md:flex'><Link to="/browse">Browse</Link></li>
                                 </>
                             )
                         }
@@ -73,9 +74,14 @@ const Navbar = () => {
                     </ul>
                     {
                         !user ? (
-                            <div className='flex items-center gap-4'>
-                                <Link to="/login"><Button variant="outline" className="border-2 border-[#0CAFFF] text-[#0CAFFF] hover:text-none rounded-3xl">Login</Button></Link>
-                                <Link to="/signup"><Button className="bg-[#F83002] hover:bg-[#449DD1] rounded-3xl">Signup</Button></Link>
+                            <div>
+                                <div className='hidden md:flex items-center gap-4'>
+                                    <Link to="/login"><Button variant="outline" className="border-2 border-[#0CAFFF] text-[#0CAFFF] hover:text-none rounded-3xl">Login</Button></Link>
+                                    <Link to="/signup"><Button className="bg-[#F83002] hover:bg-[#449DD1] rounded-3xl">Signup</Button></Link>
+                                </div>
+                                <div className='md:hidden lg:hidden'>
+                                    <MobileNavbar />
+                                </div>
                             </div>
                         ) : (
                             <Popover>
@@ -135,4 +141,24 @@ const Navbar = () => {
     )
 }
 
-export default Navbar
+export default Navbar;
+
+const MobileNavbar = () => {
+    return (
+        <Menubar>
+            <MenubarMenu>
+                <MenubarTrigger>
+                    <Menu />
+                </MenubarTrigger>
+                <MenubarContent>
+                    <div className='items-center gap-1 h-30 w-19 mr-px flex flex-col space-y-4 p-4 cursor-pointer font-medium'>
+                        <Link to="/jobs">Jobs</Link>
+                        <Link to="/browse">Browse</Link>
+                        <Link to="/login">Login</Link>
+                        <Link to="/signup">Signup</Link>
+                    </div>
+                </MenubarContent>
+            </MenubarMenu>
+        </Menubar>
+    )
+}
