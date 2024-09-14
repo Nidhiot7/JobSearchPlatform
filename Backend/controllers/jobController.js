@@ -58,7 +58,7 @@ export const getAllJobs = async (req, res) => {
             success: true
         })
     } catch (error) {
-        console.log(error);
+        return res.status(400).json({ message: "Failed to get jobs" });
     }
 }
 
@@ -77,7 +77,7 @@ export const getJobById = async (req, res) => {
         };
         return res.status(200).json({ job, success: true });
     } catch (error) {
-        console.log(error);
+        return res.status(400).json({message:"Failed to get job"});
     }
 }
 // admin kitne job create kra hai abhi tk
@@ -100,6 +100,7 @@ export const getAdminJobs = async (req, res) => {
         })
     } catch (error) {
         console.log(error);
+        return res.status(400).json({ message: error });
     }
 }
 

@@ -7,17 +7,20 @@ import userRoute from "./routes/userRoute.js";
 import companyRoute from "./routes/companyRoute.js";
 import jobRoute from "./routes/jobRoute.js";
 import applicationRoute from "./routes/applicationRoute.js";
-// import path from "path"
+import path from "path"
 
 dotenv.config({});
 
+connectDB();
+const PORT = process.env.PORT || 3000;
 const app = express();
 
-// const DIRNAME = path.resolve();
+const _dirname = path.resolve();
 
 // Middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// app.use(bodyParser.urlencoded({extended:true}))
+app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 const corsOptions = {
     origin: "http://localhost:5173",
@@ -25,32 +28,18 @@ const corsOptions = {
 }
 app.use(cors(corsOptions));
 
-const PORT = process.env.PORT || 3000;
-
 //api's
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/company", companyRoute);
 app.use("/api/v1/job", jobRoute);
 app.use("/api/v1/application", applicationRoute);
 
-// app.use(express.static(path.join(DIRNAME, "/frontend/dist")));
-// app.use("*", (_, res) =>{
-//     res.sendFile(path.resolve(DIRNAME, "frontend", "dist", "index.html"));
-// });
-
-// Connect to database and start server
-// connectDB().then(() => {
-//     const PORT = process.env.PORT || 3000;
-//     app.listen(PORT, () => {
-//         console.log(`Server running at port ${PORT}`);
-//     });
-// }).catch((error) => {
-//     console.error('Failed to connect to the database', error);
-//     process.exit(1); // Exit with a failure code if database connection fails
-// });
+app.use(express.static(path.join(_dirname, "/frontend/dist")));
+app.get('*', (_,res) => {
+    res.sendFile(path.resolve(_dirname, "frontend", "dist", "index.html"));
+});
 
 app.listen(PORT, () => {
-    connectDB();
     console.log(`Server running at port ${PORT}`);
 });
 
