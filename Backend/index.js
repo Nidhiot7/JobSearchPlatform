@@ -13,17 +13,12 @@ dotenv.config({});
 
 connectDB();
 const PORT = process.env.PORT || 3000;
-const app = express();
-
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
+const app = express(); 
 
 const _dirname = path.resolve();
 
 // Middleware
 app.use(express.json());
-// app.use(bodyParser.urlencoded({extended:true}))
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 const corsOptions = {
@@ -38,7 +33,7 @@ app.use("/api/v1/company", companyRoute);
 app.use("/api/v1/job", jobRoute);
 app.use("/api/v1/application", applicationRoute);
 
-app.use(express.static(path.join(_dirname, "frontend", "dist")));
+app.use(express.static(path.join(_dirname, "/frontend/dist/src")));
 app.get('*', (_,res) => {
     res.sendFile(path.resolve(_dirname, "frontend", "dist", "index.html"));
 });
