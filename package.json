@@ -2,10 +2,9 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "backend/index.js",
+  "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
     "dev": "nodemon backend/index.js",
     "start": "nodemon backend/index.js"
   },
