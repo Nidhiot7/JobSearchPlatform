@@ -8,9 +8,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "node ./src/backend/index.js",
+    "dev": "node backend/index.js",
     "build":"npm install && npm install --prefix frontend && npm run build --prefix frontend",
-    "start": "node ./src/backend/index.js"
+    "start": "node backend/index.js"
   },
   "author": "",
   "license": "ISC",

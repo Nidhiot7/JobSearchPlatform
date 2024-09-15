@@ -15,7 +15,7 @@ connectDB();
 const PORT = process.env.PORT || 8080;
 const app = express(); 
 
-const _dirname = path.resolve();
+// const _dirname = path.resolve();
 
 // Middleware
 app.use(express.json());
@@ -33,10 +33,10 @@ app.use("/api/v1/company", companyRoute);
 app.use("/api/v1/job", jobRoute);
 app.use("/api/v1/application", applicationRoute);
 
-app.use(express.static(path.join(_dirname, "/frontend/dist")));
-app.get('*', (_,res) => {
-    res.sendFile(path.resolve(_dirname, "frontend", "dist", "index.html"));
-});
+// app.use(express.static(path.join(_dirname, "/frontend/dist")));
+// app.get('*', (_,res) => {
+//     res.sendFile(path.resolve(_dirname, "frontend", "dist", "index.html"));
+// });
 
 app.listen(PORT, () => {
     console.log(`Server running at port ${PORT}`);
