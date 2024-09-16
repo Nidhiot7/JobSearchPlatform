@@ -4,7 +4,6 @@ import FilterCard from './FilterCard'
 import Job from './Job'
 import { useSelector } from 'react-redux'
 import { motion } from 'framer-motion';
-import { User } from 'lucide-react'
 
 // const jobsArray = [1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -25,12 +24,6 @@ const Jobs = () => {
         }
     }, [allJobs, searchedQuery]);
 
-    useEffect(() => {
-        if (User?.role === 'recruiter') {
-            navigate("/admin/jobs");
-        }
-    })
-
     return (
         <div>
             <Navbar />
@@ -45,7 +38,7 @@ const Jobs = () => {
                             <div className='flex-1 h-[88vh] overflow-y-auto pb-5'>
                                 <div className='grid lg:grid-cols-3 gap-4'>
                                     {
-                                        filterJobs && filterJobs.map((job) => (
+                                        filterJobs.map((job) => (
                                             <motion.div
                                                 initial={{ opacity: 0, x: 100 }}
                                                 animate={{ opacity: 1, x: 0 }}
