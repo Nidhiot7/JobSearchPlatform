@@ -10,7 +10,7 @@ const useGetAllJobs = () => {
         const fetchAllJobs = async () => {
             try {
                 axios.defaults.withCredentials = true;
-                const res = await axios.get(`http://localhost:8000/api/v1/job/all?keyword=${searchedQuery}`);
+                const res = await axios.get(`https://jobsearchplatform.onrender.com/api/v1/job/all?keyword=${searchedQuery}`);
                 if (res.data.success) {
                     dispatch(setAllJobs(res.data.jobs));
                 }

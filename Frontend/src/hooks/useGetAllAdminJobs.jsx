@@ -9,7 +9,7 @@ const useGetAllAdminJobs = () => {
         const fetchAllAdminJobs = async () => {
             try {
                 axios.defaults.withCredentials = true;
-                const res = await axios.get('http://localhost:8000/api/v1/job/getadminjobs');
+                const res = await axios.get('https://jobsearchplatform.onrender.com/api/v1/job/getadminjobs');
                 if (res.data.success) {
                     dispatch(setAllAdminJobs(res.data.jobs));
                 }

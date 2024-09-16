@@ -44,7 +44,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
         }
         try {
             setLoading(true);
-            const res = await axios.post("http://localhost:8000/api/v1/user/profile/update", formData, {
+            const res = await axios.post("https://jobsearchplatform.onrender.com/api/v1/user/profile/update", formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 },
@@ -56,12 +56,12 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
             }
         } catch (error) {
             console.log(error);
-            toast.error(error.response.data.message);
+            // toast.error(error.response.data.message);
         } finally {
             setLoading(false);
         }
         setOpen(false);
-        console.log(input);
+        // console.log(input);
     }
 
     return (
@@ -138,9 +138,16 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
                             </div>
                         </div>
                         <DialogFooter>
-                            {
-                                loading ? <Button className="w-full my-4"> <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please wait </Button> : <Button type="submit" className="w-full my-4">Update</Button>
-                            }
+                        {
+                            loading ? (
+                                <Button>
+                                    <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+                                    Please wait
+                                </Button>
+                            ) : (
+                                <Button type="submit">Update</Button>
+                            )
+                        }
                         </DialogFooter>
                     </form>
                 </DialogContent>

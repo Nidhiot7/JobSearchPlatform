@@ -45,7 +45,7 @@ const CompanySetup = () => {
         }
         try {
             setLoading(true);
-            const res = await axios.put(`http://localhost:8000/api/v1/company/update/${params.id}`, formData, {
+            const res = await axios.put(`https://jobsearchplatform.onrender.com/api/v1/company/update/${params.id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 },
