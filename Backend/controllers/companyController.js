@@ -29,7 +29,6 @@ export const registerCompany = async (req, res) => {
         });
     } catch (error) {
         console.log(error);
-        return res.status(400).json({ error })
     }
 }
 export const getCompany = async (req, res) => {
@@ -96,9 +95,5 @@ export const updateCompany = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json({
-            message: "An error occurred while updating company information.",
-            success: false
-        });
     }
 }
