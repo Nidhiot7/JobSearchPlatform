@@ -9,8 +9,7 @@ const useGetAppliedJobs = () => {
     useEffect(() => {
         const fetchAppliedJobs = async () => {
             try {
-                axios.defaults.withCredentials = true;
-                const res = await axios.get("https://jobsearchplatform.onrender.com/api/v1/application/get");
+                const res = await axios.get("https://jobsearchplatform.onrender.com/api/v1/application/get", {withCredentials:true});
                 console.log(res.data);
                 if (res.data.success) {
                     dispatch(setAllAppliedJobs(res.data.application));

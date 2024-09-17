@@ -8,8 +8,7 @@ const useGetAllCompanies = () => {
     useEffect(() => {
         const fetchCompanies = async () => {
             try {
-                axios.defaults.withCredentials = true;
-                const res = await axios.get("https://jobsearchplatform.onrender.com/api/v1/company/getcompany");
+                const res = await axios.get("https://jobsearchplatform.onrender.com/api/v1/company/getcompany", {withCredentials:true});
                 if (res.data.success) {
                     dispatch(setCompanies(res.data.companies));
                 }

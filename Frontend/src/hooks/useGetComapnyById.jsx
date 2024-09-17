@@ -3,13 +3,12 @@ import axios from 'axios'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
-const useGetCompanyById = (id) => {
+const useGetCompanyById = (companyId) => {
     const dispatch = useDispatch();
     useEffect(() => {
         const fetchSingleCompany = async () => {
             try {
-                axios.defaults.withCredentials = true;
-                const res = await axios.get(`https://jobsearchplatform.onrender.com/api/v1/company/getcompany/${id}`);
+                const res = await axios.get(`https://jobsearchplatform.onrender.com/api/v1/company/getcompany/${companyId}`, {withCredentials:true});
                 if (res.data.success) {
                     dispatch(setSingleCompany(res.data.company));
                 }
@@ -18,7 +17,7 @@ const useGetCompanyById = (id) => {
             }
         }
         fetchSingleCompany();
-    }, [id, dispatch])
+    }, [companyId, dispatch])
 }
 
 export default useGetCompanyById
