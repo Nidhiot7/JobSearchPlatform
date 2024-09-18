@@ -28,7 +28,7 @@ const CompanyCreate = () => {
             }
         } catch (error) {
             console.log(error);
-            toast.error(error.response.data.message);
+            toast.error("Failed to create company. Please try again.");
         }
     }
     return (
