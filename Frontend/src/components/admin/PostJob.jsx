@@ -145,7 +145,7 @@ const PostJob = () => {
                             />
                         </div>
                         {
-                             companies.length !== 0 && (
+                            companies.length > 0 && (
                                 <Select onValueChange={selectChangeHandler}>
                                     <SelectTrigger className="w-[180px]">
                                         <SelectValue placeholder="Select a Company" />
@@ -153,17 +153,13 @@ const PostJob = () => {
                                     <SelectContent>
                                         <SelectGroup>
                                             {
-                                                companies && companies.map((company) => {
+                                                companies.map((company) => {
                                                     return (
-                                                        <SelectItem
-                                                            key={company?._id}
-                                                            value={company?.name.toLowerCase()}
-                                                        >
-                                                            {company?.name}
-                                                        </SelectItem>
+                                                        <SelectItem value={company?.name?.toLowerCase()}>{company.name}</SelectItem>
                                                     )
                                                 })
                                             }
+
                                         </SelectGroup>
                                     </SelectContent>
                                 </Select>
