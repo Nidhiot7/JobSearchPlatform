@@ -10,7 +10,6 @@ import applicationRoute from "./routes/applicationRoute.js";
 
 dotenv.config({});
 
-connectDB();
 const PORT = process.env.PORT || 8080;
 const app = express(); 
 
@@ -31,6 +30,7 @@ app.use("/api/v1/job", jobRoute);
 app.use("/api/v1/application", applicationRoute);
 
 app.listen(PORT, () => {
+    connectDB();
     console.log(`Server running at port ${PORT}`);
 });
 
