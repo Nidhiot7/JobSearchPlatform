@@ -24,11 +24,11 @@ const CompanyCreate = () => {
             if(res?.data?.success){
                 dispatch(setSingleCompany(res.data.company));
                 toast.success(res.data.message);
-                const companyId = res?.data?.company?._id;
-                navigate(`/admin/companies/${companyId}`);
+                navigate(`/admin/companies/${res?.data?.company?._id}`);
             }
         } catch (error) {
             console.log(error);
+            toast.error(error.response?.data?.message);
         }
     }
     return (
