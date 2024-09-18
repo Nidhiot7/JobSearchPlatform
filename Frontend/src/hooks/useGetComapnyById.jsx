@@ -8,7 +8,7 @@ const useGetCompanyById = (companyId) => {
     useEffect(() => {
         const fetchSingleCompany = async () => {
             try {
-                const res = await axios.get(`https://jobsearchplatform.onrender.com/api/v1/company/getcompany/${companyId}`, {withCredentials:true});
+                const res = await axios.get(`https://jobsearchplatform.onrender.com/api/v1/company/get/${companyId}`, {withCredentials:true});
                 if (res.data.success) {
                     dispatch(setSingleCompany(res.data.company));
                 }
